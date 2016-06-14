@@ -31,6 +31,7 @@ $(document).ready(function() {
       );
       bouncyDancer.setPosition(startHeight, startWidth);
       $('body').append(bouncyDancer.$node);
+      window.dancers.push(bouncyDancer);
     } else if (dancerMakerFunctionName === 'CasualDancer') {
       var range = 500 * Math.random() + 500;
       var startHeight = ($('body').height() - 150) * Math.random();
@@ -44,6 +45,7 @@ $(document).ready(function() {
       );
       casualDancer.setPosition(startHeight, startWidth);
       $('body').append(casualDancer.$node);
+      window.dancers.push(casualDancer);
     } else {
       var dancerMakerFunction = window[dancerMakerFunctionName];
 
@@ -54,6 +56,7 @@ $(document).ready(function() {
         Math.random() * 1000
       );
       $('body').append(dancer.$node);
+      window.dancers.push(dancer);
     }
   });
 });
