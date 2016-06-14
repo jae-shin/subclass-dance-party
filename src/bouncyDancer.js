@@ -4,7 +4,7 @@ var BouncyDancer = function(top, left, timeBetweenSteps, speedX, speedY, height,
   this.height = height || 0;
   this.width = width || 0;
   Dancer.call(this, top, left, timeBetweenSteps);
-  this.$node = $('<img src="images/legoguy.png" class="bouncy-dancer"></img>');
+  this.$node = $('<img src="images/owl.png" class="bouncy-dancer"></img>');
   this.mode = 'bouncyDance';
 };
 
