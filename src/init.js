@@ -17,17 +17,30 @@ $(document).ready(function() {
      */
     var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
 
-    // get the maker function for the kind of dancer we're supposed to make
-    var dancerMakerFunction = window[dancerMakerFunctionName];
+    if (dancerMakerFunctionName === 'BouncyDancer') {
+      var startHeight = $('body').height() * Math.random();
+      var startWidth = $('body').width() * Math.random();
+      var bouncyDancer = new BouncyDancer(
+        startHeight,
+        startWidth,
+        Math.round(1000 / 60),
+        10 * Math.random() + 3,
+        10 * Math.random() + 3,
+        148,
+        100
+      );
+      bouncyDancer.setPosition(startHeight, startWidth);
+      $('body').append(bouncyDancer.$node);
+    } else {
+      var dancerMakerFunction = window[dancerMakerFunctionName];
 
-    // make a dancer with a random position
-
-    var dancer = dancerMakerFunction(
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
-      Math.random() * 1000
-    );
-    $('body').append(dancer.$node);
+      // make a dancer with a random position
+      var dancer = new dancerMakerFunction(
+        $('body').height() * Math.random(),
+        $('body').width() * Math.random(),
+        Math.random() * 1000
+      );
+      $('body').append(dancer.$node);
+    }
   });
 });
-
