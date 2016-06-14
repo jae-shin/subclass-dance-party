@@ -43,6 +43,14 @@ body, a:link, a:visited, a:active{
   height: 150px;
   width: 150px;
 }
+.conga-line{
+  animation-name: circular-translate;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: linear;
+  animation-delay: 2s;
+}
 
 @keyframes oscillating-rotate {
   from {
@@ -51,4 +59,36 @@ body, a:link, a:visited, a:active{
   to {
     transform: rotate(360deg) translate(-50px, -74px);
   }
+}
+
+@keyframes circular-translate {
+  0.00%   {transform:translate(0px, 0px);}
+  7.35%   {transform:translate(-161px, -175px);}
+  10.30%  {transform:translate(-242px, -227px);}
+  13.17%  {transform:translate(-333px, -243px);}
+  16.06%  {transform:translate(-425px, -226px);}
+  19.07%  {transform:translate(-507px, -174px);}
+  22.15%  {transform:translate(-563px, -91px);}
+  25.00%  {transform:translate(-580px, 0px);}
+  27.85%  {transform:translate(-563px, 91 px);}
+  30.93%  {transform:translate(-507px, 174px);}
+  33.94%  {transform:translate(-425px, 226px);}
+  36.83%  {transform:translate(-333px, 243px);}
+  39.70%  {transform:translate(-242px, 227px);}
+  42.65%  {transform:translate(-161px, 175px);}
+  50.00%  {transform:translate(0px,0px);}
+  57.35%  {transform:translate(161px, -175px);}
+  60.30%  {transform:translate(242px, -227px);}
+  63.17%  {transform:translate(333px, -243px);}
+  66.06%  {transform:translate(425px, -226px);}
+  69.07%  {transform:translate(507px, -174px);}
+  72.15%  {transform:translate(563px, -91px);}
+  75.00%  {transform:translate(580px, 0px);}
+  77.85%  {transform:translate(563px, 91 px);}
+  80.93%  {transform:translate(507px, 174px);}
+  83.94%  {transform:translate(425px, 226px);}
+  86.83%  {transform:translate(333px, 243px);}
+  89.70%  {transform:translate(242px, 227px);}
+  92.65%  {transform:translate(161px, 175px);}
+  100.00% {transform:translate(0px, 0px);}
 }

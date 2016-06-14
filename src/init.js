@@ -1,6 +1,18 @@
 $(document).ready(function() {
   window.dancers = [];
 
+  $('#congaLineButton').on('click', function(event) {
+    var interval = 10000 / window.dancers.length;
+    window.dancers.forEach(function(dancer, index) {
+      setTimeout(function() {
+        dancer.mode = 'congaLine';
+        dancer.$node.css({transition: 'top 2s, left 2s'});
+        dancer.setPosition($('body').height() / 2, $('body').width() / 2);
+        dancer.$node.addClass('conga-line');
+      }, interval * index);
+    });
+  });
+
   $('#lineUpButton').on('click', function(event) {
 
     _.shuffle(window.dancers).forEach(function(dancer, index) {
