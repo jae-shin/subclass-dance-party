@@ -5,6 +5,7 @@ var BouncyDancer = function(top, left, timeBetweenSteps, speedX, speedY, height,
   this.width = width || 0;
   Dancer.call(this, top, left, timeBetweenSteps);
   this.$node = $('<img src="images/legoguy.png" class="bouncy-dancer"></img>');
+  this.mode = 'bouncyDance';
 };
 
 BouncyDancer.prototype = Object.create(Dancer.prototype);
@@ -14,6 +15,12 @@ BouncyDancer.prototype.step = function() {
   // call the old version of step at the beginning of any call to this new version of step
   Dancer.prototype.step.call(this);
 
+  if (this.mode === 'bouncyDance') {
+    this[this.mode]();
+  }
+};
+
+BouncyDancer.prototype.bouncyDance = function() {
   var maxY = $('body').height();
   var maxX = $('body').width();
   // calculate the current position of the bouncyDancer
