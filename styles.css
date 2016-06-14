@@ -13,6 +13,10 @@ body, a:link, a:visited, a:active{
   padding:5px 12px;
   float:right;
 }
+.controlButton {
+  padding:5px 12px;
+  float:left;
+}
 .topbar{
   height:32px;
   background-color: #555;
@@ -27,10 +31,23 @@ body, a:link, a:visited, a:active{
 }
 .bouncy-dancer{
   position: absolute;
-  transform: translate(-50px, -74px);
+  animation-name: oscillating-rotate;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
 }
 .casual-dancer{
   position: absolute;
   height: 150px;
   width: 150px;
+}
+
+@keyframes oscillating-rotate {
+  from {
+    transform: rotate(-45deg) translate(-50px, -74px);
+  }
+  to {
+    transform: rotate(45deg) translate(-50px, -74px);
+  }
 }
