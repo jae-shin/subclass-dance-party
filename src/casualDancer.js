@@ -6,6 +6,7 @@ var CasualDancer = function(top, left, timeBetweenSteps, range) {
 
   Dancer.call(this, top, left, timeBetweenSteps);
   this.$node = $('<img src="images/casualpenguin.gif" class="casual-dancer"></img>');
+  this.mode = 'casualDance';
 };
 
 CasualDancer.prototype = Object.create(Dancer.prototype);
@@ -14,6 +15,12 @@ CasualDancer.prototype.constructor = CasualDancer;
 CasualDancer.prototype.step = function() {
   Dancer.prototype.step.call(this);
 
+  if (this.mode === 'casualDance') {
+    this[this.mode]();
+  }
+};
+
+CasualDancer.prototype.casualDance = function() {
   var easeInOutCubic = function (t, b, c, d) {
     if ((t /= d / 2) < 1) {
       return c / 2 * t * t * t + b;
@@ -31,7 +38,6 @@ CasualDancer.prototype.step = function() {
 
   this.setPosition(this.top, xOffset);
 };
-
 
 
 
