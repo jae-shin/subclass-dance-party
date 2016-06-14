@@ -29,3 +29,8 @@ body, a:link, a:visited, a:active{
   position: absolute;
   transform: translate(-50px, -74px);
 }
+.casual-dancer{
+  position: absolute;
+  height: 150px;
+  width: 150px;
+}
