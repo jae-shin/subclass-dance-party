@@ -32,15 +32,14 @@ $(document).ready(function() {
       bouncyDancer.setPosition(startHeight, startWidth);
       $('body').append(bouncyDancer.$node);
     } else if (dancerMakerFunctionName === 'CasualDancer') {
-      var range = 150 * Math.random() + 150;
+      var range = 500 * Math.random() + 500;
       var startHeight = ($('body').height() - 150) * Math.random();
-      var startWidth = ($('body').width() - 150 - 2 * range) * Math.random() + range;
+      var startWidth = ($('body').width() - 150 - range) * Math.random();
 
       var casualDancer = new CasualDancer(
         startHeight,
         startWidth,
         Math.round(1000 / 60),
-        2 * Math.random() + 1,
         range
       );
       casualDancer.setPosition(startHeight, startWidth);
