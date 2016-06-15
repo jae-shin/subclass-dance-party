@@ -1,5 +1,33 @@
 $(document).ready(function() {
   window.dancers = [];
+  window.currentId = 0;
+
+  $('body').on('click', '.casual-dancer', function(event) {
+    var thisDancer = window.dancers.find(function(dancer) {
+      return dancer.id === +$(this).attr('data-id');
+    }, this);
+    if (thisDancer.mode !== 'casualDance') {
+      thisDancer.mode = 'casualDance';
+      thisDancer.$node.removeClass('conga-line');
+      var range = 500 * Math.random() + 500;
+      var startHeight = ($('body').height() - 150) * Math.random();
+      var startWidth = ($('body').width() - 150 - range) * Math.random();
+      thisDancer.setPosition(startHeight, startWidth);
+    }
+  });
+
+  $('body').on('click', '.bouncy-dancer', function(event) {
+    var thisDancer = window.dancers.find(function(dancer) {
+      return dancer.id === +$(this).attr('data-id');
+    }, this);
+    if (thisDancer.mode !== 'bouncyDance') {
+      thisDancer.mode = 'bouncyDance';
+      thisDancer.$node.removeClass('conga-line');
+      var startHeight = ($('body').height() - 300) * Math.random();
+      var startWidth = ($('body').width() - 300) * Math.random();
+      thisDancer.setPosition(startHeight, startWidth);
+    }
+  });
 
   $('#congaLineButton').on('click', function(event) {
     var interval = 10000 / window.dancers.length;
@@ -7,7 +35,7 @@ $(document).ready(function() {
       setTimeout(function() {
         dancer.mode = 'congaLine';
         dancer.$node.css({transition: 'top 2s, left 2s'});
-        dancer.setPosition($('body').height() / 2, $('body').width() / 2);
+        dancer.setPosition($('body').height() / 2 - 98, $('body').width() / 2 - 115);
         dancer.$node.addClass('conga-line');
       }, interval * index);
     });
@@ -16,6 +44,7 @@ $(document).ready(function() {
   $('#lineUpButton').on('click', function(event) {
 
     _.shuffle(window.dancers).forEach(function(dancer, index) {
+      dancer.$node.removeClass('conga-line');
       dancer.$node.css({transition: 'top 2s, left 2s'});
       var position = (index + 1) * $('body').width() / (window.dancers.length + 1);
       dancer.lineUp(position);
@@ -47,11 +76,13 @@ $(document).ready(function() {
         startHeight,
         startWidth,
         Math.round(1000 / 60),
+        window.currentId,
         10 * Math.random() + 3,
         10 * Math.random() + 3,
         148,
         100
       );
+      window.currentId++;
       bouncyDancer.setPosition(startHeight, startWidth);
       $('body').append(bouncyDancer.$node);
       window.dancers.push(bouncyDancer);
@@ -64,8 +95,10 @@ $(document).ready(function() {
         startHeight,
         startWidth,
         Math.round(1000 / 60),
+        window.currentId,
         range
       );
+      window.currentId++;
       casualDancer.setPosition(startHeight, startWidth);
       $('body').append(casualDancer.$node);
       window.dancers.push(casualDancer);
@@ -76,8 +109,10 @@ $(document).ready(function() {
       var dancer = new dancerMakerFunction(
         $('body').height() * Math.random(),
         $('body').width() * Math.random(),
-        Math.random() * 1000
+        Math.random() * 1000,
+        window.currentId
       );
+      window.currentId++;
       $('body').append(dancer.$node);
       window.dancers.push(dancer);
     }
