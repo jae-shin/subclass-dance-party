@@ -43,6 +43,10 @@ body, a:link, a:visited, a:active{
   height: 150px;
   width: 150px;
 }
+.leader-dancer{
+  position: absolute;
+  height: 300px;
+}
 .conga-line{
   animation-name: circular-translate;
   animation-duration: 10s;

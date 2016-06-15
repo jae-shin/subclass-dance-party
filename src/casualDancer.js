@@ -15,9 +15,9 @@ CasualDancer.prototype.constructor = CasualDancer;
 CasualDancer.prototype.step = function() {
   Dancer.prototype.step.call(this);
 
-  if (this.mode === 'casualDance') {
+  if (this.mode === 'casualDance' || this.mode === 'leadDance') {
     this[this.mode]();
-  }
+  } 
 };
 
 CasualDancer.prototype.casualDance = function() {

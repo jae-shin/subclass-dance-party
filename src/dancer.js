@@ -8,6 +8,8 @@ var Dancer = function(top, left, timeBetweenSteps, id) {
   this.$node = $('<span class="dancer" data-id="' + this.id + '"></span>');
   this.step();
   this.mode = 'default'; // string of method name
+  this.maxRadius = 100;
+  this.maxSpeed = 20;
 
   // now that we have defined the dancer object, we can start setting up important parts of it by calling the methods we wrote
   // this one sets the position to some random default point within the body
@@ -34,4 +36,18 @@ Dancer.prototype.setPosition = function(top, left) {
 
 Dancer.prototype.lineUp = function(xPosition) {
   this.setPosition($('body').height() / 2, xPosition);
+};
+
+Dancer.prototype.leadDance = function() {
+  // if we're outside the max radius of the mouse,
+  // move maxSpeed units toward the mouse's position
+  var dist = distance(this.leader.left, this.leader.top, this.left, this.top);
+  if (dist > this.maxRadius) {
+    var deltaX = (this.leader.left - this.left) * this.maxSpeed / dist;
+    var deltaY = (this.leader.top - this.top) * this.maxSpeed / dist;
+
+    this.left = this.left + deltaX;
+    this.top = this.top + deltaY;
+    this.setPosition(this.top, this.left);
+  }
 };

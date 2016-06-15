@@ -1,3 +1,12 @@
+var distance = function(x1, y1, x2, y2) {
+  return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+};
+
+$(document).mousemove(function(event) {
+  window.mouseX = event.pageX;
+  window.mouseY = event.pageY;
+});
+
 $(document).ready(function() {
   window.dancers = [];
   window.currentId = 0;
@@ -32,8 +41,40 @@ $(document).ready(function() {
     }
   });
 
+  $('#leaderButton').on('click', function(event) {
+    if (window.leader === undefined) {
+      var startHeight = 700; 
+      var startWidth = $('body').width() + 100;
+      var leaderDancer = new LeaderDancer(
+        startHeight,
+        startWidth,
+        Math.round(1000 / 60)
+      );
+      window.leader = leaderDancer;
+      leaderDancer.$node.css({transition: ''});
+      leaderDancer.setPosition(startHeight, startWidth);
+      $('body').append(leaderDancer.$node);
+    
+      window.dancers.forEach(function(dancer, index) {
+        if (index === 0) {
+          dancer.leader = window.leader;
+        } else {
+          dancer.leader = window.dancers[index - 1];
+        }
+        dancer.$node.removeClass('conga-line');
+        dancer.$node.css({transition: ''});
+        dancer.mode = 'leadDance';
+      });
+    }
+  });
+
   $('#congaLineButton').on('click', function(event) {
     var interval = 10000 / window.dancers.length;
+    if (window.leader) {
+      window.leader.mode = 'disappearDance';
+      window.leader.disappearDance();
+      window.leader = undefined;
+    }
     window.dancers.forEach(function(dancer, index) {
       setTimeout(function() {
         dancer.mode = 'congaLine';
@@ -47,7 +88,11 @@ $(document).ready(function() {
   });
 
   $('#lineUpButton').on('click', function(event) {
-
+    if (window.leader) {
+      window.leader.mode = 'disappearDance';
+      window.leader.disappearDance();
+      window.leader = undefined;
+    }
     window.dancers.forEach(function(dancer, index) {
       dancer.$node.removeClass('conga-line');
       dancer.$node.css({transition: 'top 2s, left 2s'});
@@ -83,8 +128,8 @@ $(document).ready(function() {
         startWidth,
         Math.round(1000 / 60),
         window.currentId,
-        10 * Math.random() + 3,
-        10 * Math.random() + 3,
+        10 * Math.random() + 5,
+        10 * Math.random() + 5,
         148,
         100
       );
