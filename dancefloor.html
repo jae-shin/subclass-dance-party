@@ -9,9 +9,15 @@
     <script src="src/blinkyDancer.js"></script>
     <script src="src/bouncyDancer.js"></script>
     <script src="src/casualDancer.js"></script>
+    <script src="lib/particles.js"></script>
+    <script src="src/snow.js"></script>
   </head>
-  <body>
+  <body id='background'>
     <div class="topbar">
+      <audio controls autoplay loop class="controlButton">
+        <source src="audio/sleigh-ride.m4a" type="audio/mp4">
+      Your browser does not support the audio element.
+      </audio>
       <span class="title">object dance party</span>
       <!-- <a href="#" class="addDancerButton" data-dancer-maker-function-name="BlinkyDancer">add a blinky dancer</a> -->
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="BouncyDancer">add a bouncy dancer</a>
