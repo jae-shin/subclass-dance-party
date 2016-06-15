@@ -22,6 +22,7 @@ $(document).ready(function() {
     }, this);
     if (thisDancer.mode !== 'bouncyDance') {
       thisDancer.mode = 'bouncyDance';
+      thisDancer.$node.css({transition: ''});
       thisDancer.$node.removeClass('conga-line');
       var startHeight = ($('body').height() - 300) * Math.random();
       var startWidth = ($('body').width() - 300) * Math.random();
@@ -43,7 +44,7 @@ $(document).ready(function() {
 
   $('#lineUpButton').on('click', function(event) {
 
-    _.shuffle(window.dancers).forEach(function(dancer, index) {
+    window.dancers.forEach(function(dancer, index) {
       dancer.$node.removeClass('conga-line');
       dancer.$node.css({transition: 'top 2s, left 2s'});
       var position = (index + 1) * $('body').width() / (window.dancers.length + 1);
