@@ -1,10 +1,10 @@
-var BouncyDancer = function(top, left, timeBetweenSteps, speedX, speedY, height, width) {
+var BouncyDancer = function(top, left, timeBetweenSteps, id, speedX, speedY, height, width) {
   this.speedX = speedX || 4;
   this.speedY = speedY || 4;
   this.height = height || 0;
   this.width = width || 0;
-  Dancer.call(this, top, left, timeBetweenSteps);
-  this.$node = $('<img src="images/owl.png" class="bouncy-dancer"></img>');
+  Dancer.call(this, top, left, timeBetweenSteps, id);
+  this.$node = $('<img src="images/owl.png" class="bouncy-dancer" data-id="' + this.id + '"></img>');
   this.mode = 'bouncyDance';
 };
 

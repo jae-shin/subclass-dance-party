@@ -1,11 +1,11 @@
-var CasualDancer = function(top, left, timeBetweenSteps, range) {
+var CasualDancer = function(top, left, timeBetweenSteps, id, range) {
   this.range = range || 750;
   this.d = 200;
   this.progress = 0;
   this.increment = -1;
 
-  Dancer.call(this, top, left, timeBetweenSteps);
-  this.$node = $('<img src="images/casualpenguin-transparent.gif" class="casual-dancer"></img>');
+  Dancer.call(this, top, left, timeBetweenSteps, id);
+  this.$node = $('<img src="images/casualpenguin-transparent.gif" class="casual-dancer" data-id="' + this.id + '"></img>');
   this.mode = 'casualDance';
 };
 
